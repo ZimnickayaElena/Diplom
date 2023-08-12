@@ -1,5 +1,9 @@
-FROM openjdk:8-slim
+FROM node:erbium-alpine3.12
 WORKDIR /opt/app
-COPY aqa-shop.jar .
-CMD ["java", "-jar", "aqa-shop.jar"]
-EXPOSE 8080
+COPY ./gate-simulator .
+RUN npm install
+CMD ["npm", "start"]
+EXPOSE 9999
+
+
+
