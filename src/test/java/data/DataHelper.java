@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
 
 
 public class DataHelper {
-    private static final Faker faker = new Faker(new Locale("en"));
+    private static final Faker faker = new Faker(new Locale("ru"));
     private DataHelper() {
     }
 
@@ -52,7 +52,7 @@ public class DataHelper {
         return LocalDate.now().minusYears(1).format(DateTimeFormatter.ofPattern("yy"));
     }
     public static String getValidOwner() {
-        return faker.name().username();
+        return faker.name().firstName() + " " + faker.name().lastName();
     }
     public static String getInvalidOwner() {
         Random random = new Random();
@@ -60,7 +60,7 @@ public class DataHelper {
         return name[random.nextInt(7)];
     }
     public static String getValidCode() {
-        return IntStream.range(001, 1000).toString();
+        return faker.number().digits(3);
     }
     public static String getInvalidLittleCode() {
         return IntStream.range(1, 100).toString();

@@ -2,13 +2,11 @@ package test;
 
 import data.DataHelper;
 import data.SQLHelper;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import page.PaymentPage;
 
 import static com.codeborne.selenide.Selenide.open;
+import org.openqa.selenium.InvalidSelectorException;
 import static data.SQLHelper.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,13 +16,13 @@ public class testBuyTour {
     public void openPage() {
         open("http://localhost:8080");
     }
-    @AfterAll
-    static void teardown() {
-        cleanDatabase();
+    @AfterEach
+    void teardown() {
+        SQLHelper.cleanDatabase();
     }
 
     @Test
-    @DisplayName("Позитивный сценарий через \"Оплату по карте\" для пользователя с валидными данными")
+    //@DisplayName("Позитивный сценарий через \"Оплату по карте\" для пользователя с валидными данными")
     void shouldSuccessfullyPayWithValidUser() {
         var paymentPage = new PaymentPage();
         paymentPage.cardPayment();
@@ -33,11 +31,12 @@ public class testBuyTour {
         var year = DataHelper.getValidYear();
         var owner = DataHelper.getValidOwner();
         var codeCard = DataHelper.getValidCode();
-        paymentPage.fillingForms(cardNumber, month, year, owner, codeCard);
+        paymentPage.fillForm(cardNumber, month, year, owner, codeCard);
+        paymentPage.bankAccept();
         var expected = DataHelper.getStatusValidCard;
         var actual = SQLHelper.getPaymentInfo();
         assertEquals(expected, actual);
-        paymentPage.bankAccept();
+
     }
 
 

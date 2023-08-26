@@ -4,10 +4,13 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
 import data.DataHelper;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 
 public class PaymentPage {
@@ -16,22 +19,16 @@ public class PaymentPage {
         private SelenideElement creditButton = $(byText("Купить в кредит"));
         private SelenideElement headingPay = $(byText("Оплата по карте"));
         private SelenideElement headingCredit = $(byText("Кредит по данным карты"));
-        private SelenideElement numberCardField = $(".input__top")
-                .find(String.valueOf(exactText("Номер карты")));
-        private SelenideElement monthField = $(".input__top")
-                .find(String.valueOf(exactText("Месяц")));
-        private SelenideElement yearField = $(".input__top")
-                .find(String.valueOf(exactText("Год")));
-        private SelenideElement ownerField = $(".input__top")
-                .find(String.valueOf(exactText("Владелец")));
-        private SelenideElement codeCardField = $(".input__top")
-                .find(String.valueOf(exactText("CVC/CVV")));
+        private SelenideElement numberCardField = $("[placeholder='0000 0000 0000 0000']");
+        private SelenideElement monthField = $("[placeholder='08']");
+        private SelenideElement yearField = $("[placeholder='22']");
+        private SelenideElement ownerField = $$("[class='input__control']").get(3);;
+        private SelenideElement codeCardField = $("[placeholder='999']");
         private SelenideElement errorField = $(".input__sub")
                 .find(String.valueOf(exactText("Неверный формат")));
         private SelenideElement emptySpase = $(".input__sub")
                 .find(String.valueOf(exactText("Поле обязательно для заполнения")));
-        private SelenideElement continueButton = $("button")
-                .find(String.valueOf(exactText("Продолжить")));
+        private SelenideElement continueButton = $(byText("Продолжить"));
         private final SelenideElement notificationSuccessfully = $(".notification_status_ok");
         private final SelenideElement notificationError = $(".notification_status_error");
 
@@ -44,7 +41,7 @@ public class PaymentPage {
                 headingCredit.shouldBe(visible);
         }
 
-        public void fillingForms(String cardNumber, String month, String year, String cardOwner, String code) {
+        public void fillForm (String cardNumber, String month, String year, String cardOwner, String code) {
                 numberCardField.sendKeys(cardNumber);
                 monthField.sendKeys(month);
                 yearField.sendKeys(year);
@@ -54,7 +51,7 @@ public class PaymentPage {
         }
 
         public void bankAccept() {
-                notificationSuccessfully.shouldBe(visible);
+                notificationSuccessfully.shouldBe(visible, Duration.ofSeconds(15));
         }
         public void bankReject() {
                 notificationError.shouldBe(visible);
