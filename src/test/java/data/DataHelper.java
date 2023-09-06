@@ -18,16 +18,23 @@ public class DataHelper {
     private DataHelper() {
     }
 
-    public static AuthInfo getAuthInfo() {
-        return new AuthInfo("app", "pass");
-    }
     public static String getValidCard() {
         return "4444 4444 4444 4441";
     }
-
     public static String getStatusValidCard = "APPROVED";
-    public static String getIinvalidCard = "4444 4444 4444 4442";
+    public static String getIinvalidCard() {
+        return "4444 4444 4444 4442";
+    }
     public static String getStatusInvalidCard = "DECLINED";
+
+    public static String getErrorLessCard() {
+        return "4444 4444 4444 444";
+    }
+
+    public static String getRandomCard() {
+        return "1234 5678 9123 4567";
+    }
+
     public static String getValidMonth() {
         Random random = new Random();
         String [] month = new String [] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
@@ -42,11 +49,9 @@ public class DataHelper {
     public static String getValidYear() {
         return LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy"));
     }
-    private static String getInvalidYear() {
-        return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy"));
-    }
+    public static String getInvalidYear() { return "8"; }
     public static String getYearFuture() {
-        return LocalDate.now().plusYears(5).format(DateTimeFormatter.ofPattern("yy"));
+        return LocalDate.now().plusYears(6).format(DateTimeFormatter.ofPattern("yy"));
     }
     public static String getYearPast() {
         return LocalDate.now().minusYears(1).format(DateTimeFormatter.ofPattern("yy"));
@@ -56,14 +61,14 @@ public class DataHelper {
     }
     public static String getInvalidOwner() {
         Random random = new Random();
-        String [] name = new String [] {"Юлия", "Александр", "Ян", "12345", "Agent007", "Darina!", "Анна-Мария"};
-        return name[random.nextInt(7)];
+        String [] name = new String [] {"Yulia", "Alex", "12345", "Agent007", "Darina!", "Анна-Мария"};
+        return name[random.nextInt(6)];
     }
     public static String getValidCode() {
         return faker.number().digits(3);
     }
     public static String getInvalidLittleCode() {
-        return IntStream.range(1, 100).toString();
+        return faker.number().digits(2);
     }
     public static String getInvalidBigCode() {
         return IntStream.of( 1000).toString();
@@ -79,12 +84,6 @@ public class DataHelper {
         private String code;
     }
 
-
-    @Value
-    public static class AuthInfo {
-        private String login;
-        private String password;
-    }
 
     @Data
     @RequiredArgsConstructor
