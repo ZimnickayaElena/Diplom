@@ -34,7 +34,7 @@ _docker-compose up_
   
 для PostgreSQL:
 
-   java -jar aqa-shop.jar -P:jdbc.url=jdbc:postgres://localhost:5432/postgres -P:jdbc.user=app -P:jdbc.password=pass
+   java -jar aqa-shop.jar -P:jdbc.url=jdbc:postgresql://localhost:5432/postgresql -P:jdbc.user=app -P:jdbc.password=pass
    
 7. Дождаться сообщения в терминале, которое будет означать, что приложение успешно запущено:
 

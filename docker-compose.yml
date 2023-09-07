@@ -24,9 +24,9 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - ./base/postgres:/var/lib/postgres
+      - ./base/postgresql:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=postgres
+      - POSTGRES_DB=postgresql
       - POSTGRES_USER=app
       - POSTGRES_PASSWORD=pass
 

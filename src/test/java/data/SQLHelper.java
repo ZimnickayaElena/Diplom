@@ -21,7 +21,7 @@ public class SQLHelper {
     @SneakyThrows
     private static Connection getConn() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql", "app", "pass");
-        // return DriverManager.getConnection("jdbc:postgres://localhost:5432/postgres", "app", "pass");
+        // return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgresql", "app", "pass");
     }
 
    @SneakyThrows
