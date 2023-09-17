@@ -2,27 +2,23 @@ package data;
 
 import lombok.SneakyThrows;
 import org.apache.commons.dbutils.QueryRunner;
-
-
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
-
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 
 public class SQLHelper {
 
     private static final QueryRunner runner = new QueryRunner();
+    private static final String datasource = System.getProperty("datasource.url");
 
     private SQLHelper() {
 
     }
     @SneakyThrows
-    private static Connection getConn() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql", "app", "pass");
-        // return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgresql", "app", "pass");
-    }
+    private static Connection getConn() {
+        return DriverManager.getConnection(datasource,  "app", "pass");
+        }
 
    @SneakyThrows
     public static String getCreditRequestInfo() {

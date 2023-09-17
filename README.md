@@ -25,7 +25,7 @@
 _docker-compose up_
 
 4. Запустить gate-simulator через файл Dockerfile
-5. Перед запуском SUT убедиться, что в файлах application.properties и SQLHelper раскомментирована требуемая база данных. При работе с MYSQL закомментирована база Postgres, и наоборот.
+5. Перед запуском SUT убедиться, что в файлах application.properties и build.gradlew раскомментирована требуемая база данных. При работе с MYSQL закомментирована база Postgres, и наоборот.
 6. Запустить SUT командой в терминале:
 
 для MySQL:
