@@ -9,7 +9,8 @@
 * Оплата по кредитной карте - 16 (позитивных - 1, негативных - 15)
 
 ## Результаты выполнения автотестов:
-Тесты прошли со следующими [результатами](https://github.com/ZimnickayaElena/Diplom/blob/master/screenshots/Screenshot_15.png)
+Тесты прошли со следующими результатами
+![отчет](https://github.com/ZimnickayaElena/Diplom/blob/master/screenshots/Screenshot_15.png)
 22 - успешных, что составляет 68.75%
 10 - не прошло, что составляет 31.25%
 
